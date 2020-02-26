@@ -40,46 +40,44 @@ setTimeout(function() {
 function drawHighcharts() {
     Highcharts.chart(chartId, {
         chart: {
-            type: 'bar',
+            type: 'line',
             styledMode: true,
             spacingBottom: 25,
-            spacingRight: 100
+            spacingRight: 100,
+            spacingLeft: 0
         }, 
         title: {
             text: null
         },
         data: {
-            googleSpreadsheetKey: '1YOKb5l2VM4aAB2r20N_1aT_1vEajYrP3U-U3A6lZbC0'
+            googleSpreadsheetKey: '1Kc7OWK8Q0AnjVCGKXYo0kaCl9PHcPRmeaOu30vhK3vg',
+            // endColumn: 1
         },
         // for bar charts only
-        plotOptions: {
-            series: {
-                groupPadding: 0.1
-            } 
-        },
-        // for line charts only
         // plotOptions: {
         //     series: {
-        //         lineWidth: 1,
-        //         // clip: false,
-        //         marker: {
-        //             enabled: false,
-        //             symbol: 'circle',
-        //             fillColor: '#ffffff',
-        //             states: {
-        //                 hover: {
-        //                     fillColor: '#ffffff'
-        //                 }
-        //             }
-        //         }
-        //     }
+        //         groupPadding: 0.1
+        //     } 
         // },
+        // for line charts only
+        plotOptions: {
+            series: {
+                lineWidth: 3,
+                clip: true,
+                marker: {
+                    enabled: false,
+                    symbol: 'circle',
+                    fillColor: '#ffffff',
+                    states: {
+                        hover: {
+                            fillColor: '#ffffff'
+                        }
+                    }
+                }
+            }
+        },
         legend: {
-            align: 'right',
-            symbolRadius: 0,
-            verticalAlign: 'top',
-            x: 10,
-            itemMarginTop: -10
+            enabled: false
         },
         xAxis: {
             labels: {
@@ -92,9 +90,13 @@ function drawHighcharts() {
         yAxis: {
             title: false,
             labels: {
-                useHTML: true,
-                overflow: 'allow'
-            }
+                // useHTML: true,
+                overflow: 'allow',
+                formatter: function () {
+                    return Highcharts.numberFormat(this.value,0,'.',',');
+                },
+            },
+            min: 1000
         },
         credits: {
             enabled: false
