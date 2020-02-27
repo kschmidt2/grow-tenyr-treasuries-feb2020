@@ -1,9 +1,9 @@
 // adds social class to get social chart
-// let element = document.getElementsByClassName("chart-area");
-// for(var i = 0; i < element.length; i++)
-// {
-//     element[i].className += " social";
-// }
+let element = document.getElementsByClassName("chart-area");
+for(var i = 0; i < element.length; i++)
+{
+    element[i].className += " social";
+}
 
 // bolds the subhead if there is no headline
 let subhead = document.getElementsByClassName("chart-subhead"),
@@ -51,7 +51,7 @@ function drawHighcharts() {
         },
         data: {
             googleSpreadsheetKey: '1Kc7OWK8Q0AnjVCGKXYo0kaCl9PHcPRmeaOu30vhK3vg',
-            // endColumn: 1
+            googleSpreadsheetWorksheet: 2
         },
         // for bar charts only
         // plotOptions: {
@@ -96,7 +96,7 @@ function drawHighcharts() {
                     return Highcharts.numberFormat(this.value,0,'.',',');
                 },
             },
-            min: 1000
+            max: 30000
         },
         credits: {
             enabled: false
